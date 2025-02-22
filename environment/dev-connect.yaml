@@ -1,0 +1,69 @@
+tags:
+  owner: "Webforx Technology"
+  team: "Webforx Team"
+  environment: "development"
+  project: "connect"
+  create_by: "Terraform"
+  cloud_provider: "aws"
+
+vpc:
+  vpc_id: vpc-0cd5e30f5b5cc9770
+  public_subnets: [
+    subnet-0c6820f5859c2f10f,
+    subnet-0aeea1ee0316459ba,
+    subnet-081ea6ed0cc25f00d
+  ]
+  private_subnets: [
+    subnet-05825d1a5df058e41,
+    subnet-011bc317d9c1091b0,
+    subnet-0c7fc8734c70126dc
+  ]
+
+ecr:
+  force_delete: false
+  ecr_repository_names: [
+    ansible-lint,
+    connect-frontend,
+    connect-mobile,
+    ansible,
+    connect-backend
+  ]
+
+s3:
+  gallery:
+    bucket_name: "gallery"
+
+ec2:
+  connect-backend:
+    ec2_instance_ami: "ami-0eebd8a9879bdfafc"
+    ec2_instance_type: "t3.micro"
+    create_on_public_subnet: true
+    instance_name: "connect-backend"
+    create_on_public_subnet: true
+    vpc_id: "vpc-0cd5e30f5b5cc9770"
+    root_volume_size: 50
+    enable_termination_protection: true
+    ec2_instance_key_name: "webforx-engineering"
+    sg_name: "connect-backend"
+    allowed_ports: [
+        22,
+        80,
+        443
+      ]
+
+  github-runner:
+    ec2_instance_ami: "ami-0eebd8a9879bdfafc"
+    ec2_instance_type: "t3.micro"
+    create_on_public_subnet: true
+    instance_name: "github-runner"
+    create_on_public_subnet: true
+    vpc_id: "vpc-0cd5e30f5b5cc9770"
+    root_volume_size: 50
+    enable_termination_protection: true
+    ec2_instance_key_name: "webforx-engineering"
+    sg_name: "github-runner"
+    allowed_ports: [
+        22,
+        80,
+        443
+      ]
